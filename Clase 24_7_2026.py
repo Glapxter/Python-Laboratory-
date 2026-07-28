@@ -51,24 +51,91 @@ class SinglyLinkedList:
         if node.next is None:
             return node.data
         return str(self.revers(node.next))+" -> "+ str(node.data)
-           
 
+    def errase_Position(self, position):
+        # Lista vacía
+        if self.head is None:
+            print("La lista está vacía.")
+            return
+        # Eliminar el primer nodo
+        if position == 0:
+            self.head = self.head.next
+            return
+        actual = self.head
+        contador = 0
+        # Buscar el nodo anterior a la posición
+        while actual.next is not None and contador < position - 1:
+            actual = actual.next
+            contador += 1
+        # Verificar si la posición existe
+        if actual.next is None:
+            print("Posición fuera de rango.")
+            return
+        # Saltar el nodo que se desea eliminar
+        actual.next = actual.next.next
+
+# Eliminar al inicio
+    def errase_beginning(self):
+        # Verificar si la lista esta vacia
+        if self.head is None:
+            print("\nLista vacia")
+            return
+        # Eliminar el primer nodo
+        self.head = self.head.next
+
+    def queHace(self): # El metodo elimina al final de la lista
+        if self.inicio is None: # Verifica si la cabeza de la lista esta vacia
+            print("La lista está vacía.")
+            return
+
+        if self.inicio.next is None: # Verifica si al que apunta head esta vacio
+            self.inicio = None # de estar vacio el siguiente de head elimina la cabeza de la lista
+            return
+
+        actual = self.inicio 
+
+        while actual.next.next is not None: # recorre la lista hasta el final y elimina el ultimo
+            actual = actual.next
+        actual.next = None
+
+    # Define si la lista esta vacia
+    def define_if_list_is_Empty(self):
+        if self.head is None: # Verifica si la cabeza de la lista esta vacia
+            print("\nLa lista está vacía.")
+            return
+        print("\nLa lista no esta vacía")
+
+    
+
+
+
+    
 lista1 = SinglyLinkedList() #creamos una lista
 lista1.insert(10) #insertamos un nodo con valor 10
 lista1.insert(20) #insertamos un nodo con valor 20
 lista1.insert(30) #insertamos un nodo con valor 30
 lista1.insert(40)
-lista1.insert(50)
-lista1.insert(60)
-lista1.insert(70)
+print("Lista original")
+lista1.display()
+
+print("\nInsertar en el principio")
 lista1.insertBeginning(8) #insertamos un nodo con valor 5 al inicio
+lista1.display()
+print("\nInsertar en el medio")
 lista1.insertMiddle(100) #insertamos un nodo con valor 25 al medio
 lista1.display() #mostramos la lista
 
-print(lista1.revers(lista1.head)) #mostramos la lista al reves
+print("\nEliminar en posicion especifica")
+lista1.errase_Position(3)
+lista1.display()
 
-#Tarea para el martes:
-#1. crear la funcion de insertar al inicio (Listo)
+
+print("\nEliminar al inicio")
+lista1.errase_beginning()
+lista1.display()
+
+lista1.define_if_list_is_Empty()
 
 
-#2. crear la funcion de insertar al medio (Listo)
+
+#print(lista1.revers(lista1.head)) #mostramos la lista al reves
