@@ -101,9 +101,25 @@ class SinglyLinkedList:
     # Define si la lista esta vacia
     def define_if_list_is_Empty(self):
         if self.head is None: # Verifica si la cabeza de la lista esta vacia
-            print("\nLa lista está vacía.")
+            print("La lista está vacía.")
             return
-        print("\nLa lista no esta vacía")
+        print("La lista no esta vacía")
+
+    # Busca un elemento de la lista
+    def search_in_list(self, data):
+        current = self.head
+        while (current):
+            if current.data == data:
+                print("Valor encontrado")
+                return
+            current = current.next
+        print("El valor no se encuentra en la lista")
+
+
+
+
+            
+            
 
     
 
@@ -134,7 +150,11 @@ print("\nEliminar al inicio")
 lista1.errase_beginning()
 lista1.display()
 
+print("\nDefinir si una lista esta vacía")
 lista1.define_if_list_is_Empty()
+
+print("\nBuscar en la lista")
+lista1.search_in_list(20)
 
 
 
