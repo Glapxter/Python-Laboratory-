@@ -1,3 +1,4 @@
+import os
 class Node:
     def __init__(self, valor): #init: nos permite representar un numero
         self.data = valor
@@ -115,47 +116,49 @@ class SinglyLinkedList:
             current = current.next
         print("El valor no se encuentra en la lista")
 
+# Menú de la lista
+def Menu_list():
+        print("1. Insert number")
+        print("2. Insert number at beginning")
+        print("3. Insert number in midle")
+        print("4. Errase number at beginning")
+        print("5. Errase by position")
+        print("6. Search a value")
+        print("7. Display list")
+        print("8. Display inverted list")
+        print("9. Exit")
 
+        option= int(input("ingrese una opción del menú: "))
+        match option:
+            #insert options
+            case 1:
+                lista1.insert(int(input("Ingrese un numero: ")))
+            case 2:
+                lista1.insertBeginning(int(input("Ingrese un numero: ")))
+            case 3:
+                lista1.insertMiddle(int(input("Ingrese un numero: ")))
+            #errase options
+            case 4:
+                lista1.errase_beginning()
+            case 5:
+                lista1.errase_Position()
+            #search option
+            case 6:
+                lista1.search_in_list(int(input("Ingrese un numero a buscar: ")))
+            #display options
+            case 7:
+                lista1.display()
+            case 8:
+                print(lista1.revers(lista1.head)) #mostramos la lista al reves
+            #exit option
+            case 9:
+                print("\nFinalizando sessión")
+                return False
 
-
-            
-            
-
-    
-
-
-
-    
+        while (Menu_list()):
+            os.system('pause')
+            os.system('cls')
+          
+ # implementación de metodos                    
 lista1 = SinglyLinkedList() #creamos una lista
-lista1.insert(10) #insertamos un nodo con valor 10
-lista1.insert(20) #insertamos un nodo con valor 20
-lista1.insert(30) #insertamos un nodo con valor 30
-lista1.insert(40)
-print("Lista original")
-lista1.display()
-
-print("\nInsertar en el principio")
-lista1.insertBeginning(8) #insertamos un nodo con valor 5 al inicio
-lista1.display()
-print("\nInsertar en el medio")
-lista1.insertMiddle(100) #insertamos un nodo con valor 25 al medio
-lista1.display() #mostramos la lista
-
-print("\nEliminar en posicion especifica")
-lista1.errase_Position(3)
-lista1.display()
-
-
-print("\nEliminar al inicio")
-lista1.errase_beginning()
-lista1.display()
-
-print("\nDefinir si una lista esta vacía")
-lista1.define_if_list_is_Empty()
-
-print("\nBuscar en la lista")
-lista1.search_in_list(20)
-
-
-
-#print(lista1.revers(lista1.head)) #mostramos la lista al reves
+Menu_list()
