@@ -142,7 +142,7 @@ def Menu_list():
             case 4:
                 lista1.errase_beginning()
             case 5:
-                lista1.errase_Position()
+                lista1.errase_Position(int(input("Ingrese la posicion a eliminar: ")))
             #search option
             case 6:
                 lista1.search_in_list(int(input("Ingrese un numero a buscar: ")))
@@ -156,6 +156,7 @@ def Menu_list():
                 print("\nFinalizando sessión")
                 return False
 
+        return True
         while (Menu_list()):
             os.system('pause')
             os.system('cls')
