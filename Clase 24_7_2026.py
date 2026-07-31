@@ -118,6 +118,7 @@ class SinglyLinkedList:
 
 # Menú de la lista
 def Menu_list():
+        print("\n---- List Menu ----")
         print("1. Insert number")
         print("2. Insert number at beginning")
         print("3. Insert number in midle")
@@ -126,7 +127,7 @@ def Menu_list():
         print("6. Search a value")
         print("7. Display list")
         print("8. Display inverted list")
-        print("9. Exit")
+        print("9. Exit\n")
 
         option= int(input("ingrese una opción del menú: "))
         match option:
