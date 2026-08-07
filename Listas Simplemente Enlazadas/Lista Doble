@@ -1,0 +1,79 @@
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.siguiente = None
+        self.anterior = None
+
+class ListaDoblementeEnlazada:
+    def __init__(self):
+        self.cabeza = None
+        self.cola = None
+        self.tamano = 0
+
+    def esta_vacia(self):
+        return self.cabeza is None
+
+    def agregar_inicio(self, valor):
+        nuevo_nodo = Nodo(valor)
+        if self.esta_vacia():
+            self.cabeza = nuevo_nodo
+            self.cola = nuevo_nodo
+        else:
+            nuevo_nodo.siguiente = self.cabeza
+            self.cabeza.anterior = nuevo_nodo
+            self.cabeza = nuevo_nodo
+        self.tamano += 1
+
+    def recorrer_adelante(self):
+        actual = self.cabeza
+        while actual: #actual == true
+            print(actual.valor)
+            actual = actual.siguiente
+        print("None")
+
+    def recorrer_atras(self):
+        actual = self.cola
+        while actual:
+            print(actual.valor)
+            actual = actual.anterior
+        print("None")
+    def buscar(self, valor):
+        actual = self.cabeza
+        posicion = 0
+        while actual:
+            if actual.valor == valor:
+                return posicion
+            actual = actual.siguiente
+            posicion += 1
+        return -1 #este elemente nunca estuvo en la lista doblemente enlazada
+
+    def tamaño_lista(self):
+        return self.tamano
+
+    def eliminarAlFinal(self):
+        if self.esta_vacia():
+            print("No se puede eliminar la lista está vacía.")
+            return None
+        if self.cabeza == self.cola:  # Si solo hay un nodo en la lista
+            self.cabeza = None
+            self.cola = None
+        else:
+            self.cola = self.cola.anterior
+            self.cola.siguiente = None
+        self.tamaño -= 1
+
+
+if __name__== "__main__":
+    lista = ListaDoblementeEnlazada()
+    if lista.esta_vacia():
+        print("La lista está vacia")
+    else:
+        print("La lista no esta vacia")
+    lista.agregar_inicio(5)
+    lista.agregar_inicio(10)
+    lista.agregar_inicio(15)
+    lista.recorrer_adelante()
+    lista.recorrer_atras()
+    print("Esta en la lista",    lista.buscar(13))
+    print("Tamaño de la lista: ", lista.tamaño_lista())
+    lista.eliminarAlFinal()
