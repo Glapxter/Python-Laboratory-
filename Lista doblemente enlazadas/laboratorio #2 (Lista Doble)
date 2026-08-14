@@ -27,9 +27,9 @@ class ListaDoblementeEnlazada:
     def recorrer_adelante(self):
         actual = self.cabeza
         while actual: #actual == true
-            print(actual.valor)
+            print(actual.valor, end="->")
             actual = actual.siguiente
-        print("None")
+        print("None")   
 
     def recorrer_atras(self):
         actual = self.cola
@@ -201,26 +201,106 @@ class ListaDoblementeEnlazada:
         self.tamaño -= 1
 
         return valor_eliminado
+    def Prueba_Metodos(self):
+        lista = ListaDoblementeEnlazada()
+        if lista.esta_vacia():
+                print("La lista está vacia")
+        else:
+                print("La lista no esta vacia")
+        lista.agregar_inicio(5)
+        lista.agregar_inicio(10)
+        lista.agregar_inicio(15)
+        lista.recorrer_adelante()
+        lista.recorrer_atras()
+        print("Esta en la lista",    lista.buscar(13))
+        print("tamano de la lista: ", lista.tamaño_lista())
+        lista.insertar_final(12)
+        lista.insertar_medio(13,5)
+        lista.eliminarAlFinal()
+        lista.eliminar_inicio()
+        lista.eliminar_medio(5)
+
+    def promedio(self):
+        if self.esta_vacia():
+            print("Lista vacia: Imposible calcular promedio de temperatura")
+            return None
+
+        suma=0
+        actual = self.cabeza
+        while actual:
+            suma+= actual.valor
+            actual = actual.siguiente
+
+        return suma / self.tamano
+
+    def temperatura_Mayor(self):
+        if self.esta_vacia():
+            print("Lista Vacia: Imposible determinar la temperatura mayor resgistrada.")
+            return None
+
+        mayor = self.cabeza.valor
+        actual = self.cabeza.siguiente
+
+        while actual:
+            if actual.valor > mayor:
+                mayor = actual.valor
+            actual = actual.siguiente
+
+        return mayor
+
+    def temperatura_menor(self):
+        if self.esta_vacia():
+            print("Lista vacia: Imposible determinar la temperatura menor registrada.")
+            return None
+
+        menor = self.cabeza.valor
+        actual = self.cabeza.siguiente
+
+        while actual:
+            if actual.valor < menor:
+                menor = actual.valor
+            actual= actual.siguiente
+
+        return menor
 
 
-
-if __name__== "__main__":
+if __name__ == "__main__":
+# Crear la lista doblemente enlazada
     lista = ListaDoblementeEnlazada()
-    if lista.esta_vacia():
-        print("La lista está vacia")
-    else:
-        print("La lista no esta vacia")
-    lista.agregar_inicio(5)
-    lista.agregar_inicio(10)
-    lista.agregar_inicio(15)
-    lista.recorrer_adelante()
-    lista.recorrer_atras()
-    print("Esta en la lista",    lista.buscar(13))
-    print("tamano de la lista: ", lista.tamaño_lista())
-    lista.insertar_final(12)
-    lista.insertar_medio(13,5)
-    lista.eliminarAlFinal()
-    lista.eliminar_inicio()
-    lista.eliminar_medio(5)
+    try:
+        with open("datos.txt", "r") as archivo:
+            for linea in archivo:
+                linea = linea.strip()
+                # Evitar líneas vacías
+                if linea != "":
+                    valor = int(linea)
+                    # Insertar el valor en la lista
+                    lista.agregar_inicio(valor)
+                    lista.recorrer_adelante()
+                    print(f"Cantidad de elementos: {lista.tamaño_lista()}")
 
-    
+    except FileNotFoundError:
+        print("Error: el archivo datos.txt no existe.")
+        exit()
+
+    except ValueError:
+        print("Error: el archivo contiene un dato que no es entero.")
+        exit()
+
+    with open("Reporte.txt", "w") as archivo:
+        archivo.write("====================================\n")
+        archivo.write("    REPORTE DE TEMPERATURAS\n")
+        archivo.write("====================================\n\n")
+        archivo.write(
+            "Cantidad de temperaturas: "
+            + str(lista.tamaño_lista())
+            + "\nMayor: "
+            + str( lista.temperatura_Mayor())
+            + "°C\nMenor: "
+            + str( lista.temperatura_menor())
+            + "°C\nPromedio: "
+            + str(lista.promedio())
+            + "°C\n"
+            + str("Elaborado por Barrios Anthony") 
+            + "\n"
+        )
