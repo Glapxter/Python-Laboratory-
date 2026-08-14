@@ -164,6 +164,45 @@ class ListaDoblementeEnlazada:
 
         return valor_eliminado
 
+    def eliminar_medio(self, posicion):
+        if self.esta_vacia():
+            print("No se puede eliminar: la lista está vacía.")
+            return None
+
+        # Verificar posición
+        if posicion < 0 or posicion >= self.tamano:
+            print("Posición inválida.")
+            return None
+
+        # Si es el primer elemento
+        if posicion == 0:
+            return self.eliminar_inicio()
+
+        # Si es el último elemento
+        if posicion == self.tamaño - 1:
+            return self.eliminarAlFinal()
+
+        actual = self.cabeza
+
+        # Buscar el nodo que se desea eliminar
+        for i in range(posicion):
+            actual = actual.siguiente
+
+        valor_eliminado = actual.valor
+
+        # Guardar nodos anterior y siguiente
+        anterior = actual.anterior
+        siguiente = actual.siguiente
+
+        # Reconectar los nodos
+        anterior.siguiente = siguiente
+        siguiente.anterior = anterior
+
+        self.tamaño -= 1
+
+        return valor_eliminado
+
+
 
 if __name__== "__main__":
     lista = ListaDoblementeEnlazada()
@@ -182,41 +221,6 @@ if __name__== "__main__":
     lista.insertar_medio(13,5)
     lista.eliminarAlFinal()
     lista.eliminar_inicio()
-    lista.eliminar_medio(5)def eliminar_medio(self, posicion):
+    lista.eliminar_medio(5)
 
-    if self.esta_vacia():
-        print("No se puede eliminar: la lista está vacía.")
-        return None
-
-    # Verificar posición
-    if posicion < 0 or posicion >= self.tamaño:
-        print("Posición inválida.")
-        return None
-
-    # Si es el primer elemento
-    if posicion == 0:
-        return self.eliminar_inicio()
-
-    # Si es el último elemento
-    if posicion == self.tamaño - 1:
-        return self.eliminarAlFinal()
-
-    actual = self.cabeza
-
-    # Buscar el nodo que se desea eliminar
-    for i in range(posicion):
-        actual = actual.siguiente
-
-    valor_eliminado = actual.valor
-
-    # Guardar nodos anterior y siguiente
-    anterior = actual.anterior
-    siguiente = actual.siguiente
-
-    # Reconectar los nodos
-    anterior.siguiente = siguiente
-    siguiente.anterior = anterior
-
-    self.tamaño -= 1
-
-    return valor_eliminado
+    
