@@ -1,0 +1,21 @@
+import random
+def bubble_sort(lista):
+    
+    for i in range(len(lista) - 1):
+        for j in range(len(lista)-2):
+            if lista[i] > lista[i+1]:
+                temp = lista[i]
+                lista [i] = lista[i+1]
+                lista [i+1] = temp
+    return lista   
+
+datos = [random.randint(1, 100) for _ in range(20)]
+lista = datos.copy()
+
+
+
+
+print("Lista original:")
+print(datos)
+print("Lista ordenada")
+print(bubble_sort(lista))
